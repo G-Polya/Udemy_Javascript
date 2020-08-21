@@ -37,5 +37,16 @@ let deleteTodo = function(toDo_list, text)
     
 }
 
-deleteTodo(toDo_list, 'buy food')
-console.log(toDo_list)
+const getThingsToDo = function(toDo_list, boolean)
+{
+    return toDo_list.filter(function(toDo)
+    {
+        return !toDo.completed 
+    })
+}
+
+
+console.log(getThingsToDo(toDo_list, false))
+
+// deleteTodo(toDo_list, 'buy food')
+// console.log(toDo_list)

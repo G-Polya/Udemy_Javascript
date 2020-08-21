@@ -33,9 +33,40 @@ let deleteTodo = function(toDo_list, text)
     {
         toDo_list.splice(toDoIndex,1)
     }
-
-    
 }
 
-deleteTodo(toDo_list, 'buy food')
+const getThingsToDo = function(toDo_list, boolean)
+{
+    return toDo_list.filter(function(toDo)
+    {
+        return !toDo.completed 
+    })
+}
+
+const sortToDoList = function(toDo_list)
+{
+    toDo_list.sort(function(a, b)
+    {
+        if(!b.completed && a.completed)
+        {
+            return 1
+        }
+        else if(!a.completed && b.completed)
+        {
+            return -1
+        }
+        else
+        {
+            return 0
+        }
+    })
+}
+
+sortToDoList(toDo_list)
 console.log(toDo_list)
+
+
+
+//console.log(getThingsToDo(toDo_list, false))
+// deleteTodo(toDo_list, 'buy food')
+// console.log(toDo_list)

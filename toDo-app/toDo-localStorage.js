@@ -8,12 +8,12 @@ const filters = {
 
 renderTodos(toDo_list, filters)
 
-document.querySelector('#search-text').addEventListener('input', function (e) {
+document.querySelector('#search-text').addEventListener('input', (e) => {
     filters.searchText = e.target.value
     renderTodos(toDo_list, filters)
 })
 
-document.querySelector('#new-todo').addEventListener('submit', function (e) {
+document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
     toDo_list.push({
         id : uuidv4(),
@@ -26,7 +26,7 @@ document.querySelector('#new-todo').addEventListener('submit', function (e) {
     e.target.elements.text.value = ''
 })
 
-document.querySelector('#hide-completed').addEventListener('change', function (e) {
+document.querySelector('#hide-completed').addEventListener('change', (e) => {
     filters.hideCompleted = e.target.checked
     renderTodos(toDo_list, filters)
 })

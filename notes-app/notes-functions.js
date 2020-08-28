@@ -1,8 +1,21 @@
+'use strict'
+const public = true
+let data
+const processData = () => {
+    data = '12308123'
+}
+processData()
+console.log(data)
 
 // Read existing notes from localStorage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
-    return notesJSON !== null ? JSON.parse(notesJSON) : []
+
+    try {
+        return notesJSON  ? JSON.parse(notesJSON) : []
+    } catch(e) {
+        return []
+    }
 }
 
 // Remove a note from the list
@@ -42,7 +55,7 @@ const generateNoteDom = (note) => {
 }
 
 // Save the notes to localStorage
-const saveNotes = function(notes) {
+const saveNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes))
 }
 

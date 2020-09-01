@@ -1,3 +1,8 @@
+// HTTP (HyperText Transfer Protocol)
+// Request - What we want to do
+// Response - What was actually done
+
+
 class Hangman {
     constructor(word, remainingGuesses) {
         this.word = word.toLowerCase().split('')

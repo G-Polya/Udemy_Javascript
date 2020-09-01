@@ -13,6 +13,7 @@ window.addEventListener('keypress', (e) => {
     gueesesElement.textContent = game1.statusMessage
 })
 
+
 const request = new XMLHttpRequest()
 request.addEventListener('readystatechange', (e) => {
     if(e.target.readyState === 4 && e.target.status === 200) {
@@ -24,5 +25,14 @@ request.addEventListener('readystatechange', (e) => {
     }
 })
 
+
 request.open('GET', 'http://puzzle.mead.io/puzzle?wordCount=2')
 request.send()
+
+
+
+getCountry("US").then((country) => {
+    console.log(country.name)
+}, (err) => {
+    console.log(`Error: ${err}`)
+})

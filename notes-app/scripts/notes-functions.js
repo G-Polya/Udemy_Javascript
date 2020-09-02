@@ -1,11 +1,10 @@
-'use strict'
+
 const public = true
 let data
 const processData = () => {
     data = '12308123'
 }
 processData()
-console.log(data)
 
 // Read existing notes from localStorage
 const getSavedNotes = () => {

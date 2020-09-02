@@ -35,4 +35,10 @@ getCountry("US").then((country) => {
     console.log(country.name)
 }, (err) => {
     console.log(`Error: ${err}`)
+}) 
+
+getLocation().then((location) => {
+    return getCountry(loaction.country)
+}, (err) => {
+    console.log(`Error: ${err}`)
 })

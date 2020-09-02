@@ -35,6 +35,22 @@ const getCountry = (countryCode) => new Promise( (resolve, reject) =>{
     countryRequest.send()
 })
 
+const getLocation = () => new Promise((resolve, reject) => {
+    const locationRequest = new XMLHttpRequest()
+
+    locationRequest.addEventListener('readystatechange', (e) => {
+        if(e.target.readyState === 4 && e.target.status === 200) {
+            const data = JSON.parse(e.target.responseText)
+            resolve(data)
+        }else if(e.target.readyState === 4){
+            reject('Unable to fetch data')
+        }
+    })
+
+    locationRequest.open('GET', 'http://ipinfo.io/json?token=8dcd74f97eb55d')
+    locationRequest.send()
+})
+
 
 // const getPuzzleSync = () => {
 //     const request = new XMLHttpRequest()

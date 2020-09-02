@@ -5,7 +5,8 @@
 
 class Hangman {
     constructor(word, remainingGuesses) {
-        this.word = word.toLowerCase().split('')
+        this.word = word.puzzle.toLowerCase().split('')
+        console.log(word)
         this.remainingGuesses = remainingGuesses
         this.guessedLetters = []
         this.status = 'playing'

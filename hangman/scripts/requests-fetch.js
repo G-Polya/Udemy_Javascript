@@ -1,5 +1,5 @@
 const getPuzzle = (wordCount) => {
-    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then( (response) => {
+    return fetch(`https://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then( (response) => {
         if(response.status === 200) {
             return response.json()
         } else {

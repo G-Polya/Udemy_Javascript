@@ -15,15 +15,20 @@ document.querySelector('#search-text').addEventListener('input', (e) => {
 
 document.querySelector('#new-todo').addEventListener('submit', (e) => {
     e.preventDefault()
-    toDo_list.push({
-        id : uuidv4(),
-        text: e.target.elements.text.value,
-        completed: false
-    })
+    const text = e.target.elements.text.value.trim()
 
-    saveTodos(toDo_list)
-    renderTodos(toDo_list, filters)
-    e.target.elements.text.value = ''
+    if(text.length > 0) {
+        toDo_list.push({
+            id : uuidv4(),
+            text : text,
+            completed: false
+        })
+    
+        saveTodos(toDo_list)
+        renderTodos(toDo_list, filters)
+        e.target.elements.text.value = ''
+    
+    }
 })
 
 document.querySelector('#hide-completed').addEventListener('change', (e) => {

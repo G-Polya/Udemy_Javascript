@@ -19,10 +19,13 @@ const saveTodos = (todos) => {
 
 const generateSummary = (filteredTodos) => {
     const incompleteTodos = filteredTodos.filter( (todo) => !todo.completed)
-
-
     const summary = document.createElement('h2')
-    summary.textContent = `You have ${incompleteTodos.length} todos left`
+    
+    const plural = incompleteTodos.length === 1 ? '' : 's'
+
+    summary.classList.add('list-title')
+
+    summary.textContent = `You have ${incompleteTodos.length} todo${plural} left`
     document.querySelector('#todos').appendChild(summary)
 }
 
@@ -44,7 +47,8 @@ const toggleTodo = (id) => {
 
 
 const maketoDoDOM = (todo) => {
-    const todoElement = document.createElement('div')
+    const todoElement = document.createElement('label')
+    const containerEl = document.createElement('div')
     const checkBox = document.createElement('input')
     const todoText = document.createElement('span')
     const removeButton = document.createElement('button')
@@ -52,7 +56,7 @@ const maketoDoDOM = (todo) => {
     // Setup todo checkbox
     checkBox.setAttribute('type','checkbox')
     checkBox.checked = todo.completed
-    todoElement.appendChild(checkBox)
+    containerEl.appendChild(checkBox)
     checkBox.addEventListener('change', () => {
         toggleTodo(todo.id)
         saveTodos(toDo_list)
@@ -61,31 +65,46 @@ const maketoDoDOM = (todo) => {
 
     // Setup todo text
     todoText.textContent = todo.text
-    todoElement.appendChild(todoText)
+    containerEl.appendChild(todoText)
+
+    // Set up container
+    todoElement.classList.add('list-item')
+    containerEl.classList.add('list-item__container')
+    todoElement.appendChild(containerEl)
 
     // Setup button
-    removeButton.textContent = 'x'
+    removeButton.textContent = 'remove'
+    removeButton.classList.add('button', 'button--text')
     todoElement.appendChild(removeButton)
     removeButton.addEventListener('click', () => {
         removeTodo(todo.id)
         saveTodos(toDo_list)
         renderTodos(toDo_list, filters)
     })
-
-
+    
     return todoElement
 }
 
 const renderTodos = (todos, filters) => {
+    const todoEl = document.querySelector('#todos')
 
     const filteredTodos = makefilteredTodos(todos)
 
 
-    document.querySelector('#todos').innerHTML = ''
+    todoEl.innerHTML = ''
     
     generateSummary(filteredTodos)
 
-    filteredTodos.forEach( (todo) => {
-        document.querySelector('#todos').appendChild(maketoDoDOM(todo))
-    })
+
+    if(filteredTodos.length > 0) {    
+        filteredTodos.forEach( (todo) => {
+            todoEl.appendChild(maketoDoDOM(todo))
+        })
+    } else{
+        const messageEl = document.createElement('p')
+        messageEl.classList.add('empty-message')
+        messageEl.textContent = 'No to-dos to show'
+        todoEl.appendChild(messageEl)
+    }
+
 }
